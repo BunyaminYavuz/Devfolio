@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaHome, FaProjectDiagram, FaUser, FaEnvelope, FaLaptopCode } from 'react-icons/fa';
+import { FaHome, FaProjectDiagram, FaUser, FaEnvelope, FaLaptopCode, FaUserShield } from 'react-icons/fa';
 import { GiPaintBrush } from 'react-icons/gi';
 
 const Nav = styled.nav`
@@ -70,6 +70,9 @@ const Navbar = () => {
         </NavLink>
         <NavLink to="/contact">
           <FaEnvelope style={{ marginRight: '8px' }} /> Contact
+        </NavLink>
+        <NavLink to="/admin">
+          <FaUserShield style={{ marginRight: '8px' }} /> Admin
         </NavLink>
       </NavMenu>
     </Nav>
