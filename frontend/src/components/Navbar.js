@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaHome, FaProjectDiagram, FaUser, FaEnvelope, FaLaptopCode, FaUserShield } from 'react-icons/fa';
 import { GiPaintBrush } from 'react-icons/gi';
@@ -12,9 +12,14 @@ const Nav = styled.nav`
   align-items: center;
   padding: 0.5rem calc((100vw - 1000px) / 2);
   z-index: 10;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    height: auto; /* Allow height to adjust */
+  }
 `;
 
-const NavLink = styled(Link)`
+const StyledNavLink = styled(NavLink)`
   color: #fff;
   display: flex;
   align-items: center;
@@ -23,8 +28,19 @@ const NavLink = styled(Link)`
   font-size: 18px;
   height: 100%;
   cursor: pointer;
+
+  &.active {
+    color: #00ff88; /* Change color for active link */
+    font-weight: bold; /* Optional: make active link bold */
+  }
+
   &:hover {
     color: #00ff88;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px; /* Adjust padding for smaller screens */
+    font-size: 16px; /* Adjust font size for smaller screens */
   }
 `;
 
@@ -32,12 +48,14 @@ const NavMenu = styled.div`
   display: flex;
   align-items: center;
   margin-right: -24px;
+
   @media screen and (max-width: 768px) {
-    display: none;
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    margin-right: 0; /* Reset margin */
   }
 `;
 
-const Logo = styled(Link)`
+const Logo = styled(NavLink)`
   color: #fff;
   font-size: 1.5rem;
   font-weight: bold;
@@ -59,21 +77,21 @@ const Navbar = () => {
         Tech Portfolio
       </Logo>
       <NavMenu>
-        <NavLink to="/">
+        <StyledNavLink to="/" exact activeClassName="active">
           <FaHome style={{ marginRight: '8px' }} /> Home
-        </NavLink>
-        <NavLink to="/projects">
+        </StyledNavLink>
+        <StyledNavLink to="/projects" activeClassName="active">
           <FaProjectDiagram style={{ marginRight: '8px' }} /> Projects
-        </NavLink>
-        <NavLink to="/about">
+        </StyledNavLink>
+        <StyledNavLink to="/about" activeClassName="active">
           <FaUser style={{ marginRight: '8px' }} /> About Me
-        </NavLink>
-        <NavLink to="/contact">
+        </StyledNavLink>
+        <StyledNavLink to="/contact" activeClassName="active">
           <FaEnvelope style={{ marginRight: '8px' }} /> Contact
-        </NavLink>
-        <NavLink to="/admin">
+        </StyledNavLink>
+        <StyledNavLink to="/admin" activeClassName="active">
           <FaUserShield style={{ marginRight: '8px' }} /> Admin
-        </NavLink>
+        </StyledNavLink>
       </NavMenu>
     </Nav>
   );
